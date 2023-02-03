@@ -1,8 +1,15 @@
 // import EventHandlers from "./EventHanlders"
-import EventHandlersClass from "./EventHandlersClass"
+import EventHandlersClass from "./EventHandlersClass";
 
 const App = () => {
-  return <EventHandlersClass />
-}
+  return (
+    <div>
+      <EventHandlersClass />
+      <EventHandlersClass />
+      <EventHandlersClass />
+      <EventHandlersClass />
+    </div>
+  );
+};
 
-export default App
+export default App;
