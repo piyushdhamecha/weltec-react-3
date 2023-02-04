@@ -1,5 +1,6 @@
 import { Component } from "react"
 
+// This is for dummy commit
 class EventHandlersClass extends Component {
   constructor() {
     console.log('Constructor called')
