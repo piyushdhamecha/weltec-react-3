@@ -8,6 +8,7 @@ class EventHandlersClass extends Component {
 
     this.state = {
       count: 0,
+      isLoading: false,
       country: "",
       time: new Date(),
       timerInstance: null
