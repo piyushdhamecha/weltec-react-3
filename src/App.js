@@ -1,9 +1,21 @@
 import "./App.css";
 
-import LifeCycle from './LifeCycle'
+import LifeCycle from "./LifeCycle";
 
 function App() {
-  return <LifeCycle />
+  return (
+    <div>
+      <div>
+        <LifeCycle />
+      </div>
+      {/* <div>
+        <LifeCycle />
+      </div>
+      <div>
+        <LifeCycle />
+      </div> */}
+    </div>
+  );
 }
 
 export default App;

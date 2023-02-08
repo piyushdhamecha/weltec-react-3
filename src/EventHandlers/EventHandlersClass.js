@@ -29,9 +29,13 @@ class EventHandlersClass extends Component {
 
     // console.log({ prevState, currentState: this.state })
 
-    // if(prevState.country !== this.state.country) {
-    //   console.log('Do some dropdown actions')
-    // }
+    if(prevState.country !== this.state.country) {
+      console.log('Do some dropdown actions')
+    }
+
+    if(prevState.state !== this.state.current) {
+      console.log('Do some dropdown actions')
+    }
   }
 
   componentWillUnmount() {
