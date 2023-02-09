@@ -1,3 +1,3 @@
-import LifeCycle from './LifeCycle'
+import LifeCycleWrapper from './LifeCycleWrapper'
 
-export default LifeCycle
+export default LifeCycleWrapper

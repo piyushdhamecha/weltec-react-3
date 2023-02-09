@@ -1,21 +1,10 @@
 import "./App.css";
 
-import LifeCycle from "./LifeCycle";
+// import LifeCycle from "./LifeCycle";
+import Timer from "./Timer";
 
 function App() {
-  return (
-    <div>
-      <div>
-        <LifeCycle />
-      </div>
-      {/* <div>
-        <LifeCycle />
-      </div>
-      <div>
-        <LifeCycle />
-      </div> */}
-    </div>
-  );
+  return <Timer />;
 }
 
 export default App;

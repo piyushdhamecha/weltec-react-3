@@ -11,11 +11,15 @@ const LifeCycle = () => {
 
   console.log("Variable initialized");
 
-  const [count, setCount] = useState(50);
+  const [count, setCount] = useState(100);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     console.log("useEffect with no dependencies called");
+
+    return () => {
+      console.log("useEffect with no dependencies CLEAN UP called");
+    }
   });
 
   // it will be like 
@@ -28,10 +32,18 @@ const LifeCycle = () => {
   // prevDep === currentDep 
   useEffect(() => {
     console.log("useEffect with Empty array dependency called");
+
+    return () => {
+      console.log("useEffect with Empty array dependency CLEAN UP called")  
+    }
   }, []);
 
   useEffect(() => {
     console.log("useEffect with dependencies called");
+
+    return () => {
+      console.log("useEffect with dependencies CLEAN UP called");
+    }
   }, [count, isLoading])
 
   const handleIncrementClick = () => {
