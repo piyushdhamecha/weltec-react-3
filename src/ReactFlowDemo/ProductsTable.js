@@ -6,8 +6,6 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-// import { TableStyled } from "./ReactFlowDemo.styled";
-
 const ProductsTable = ({ products }) => {
   return (
     <TableContainer component={Paper}>
@@ -29,8 +27,8 @@ const ProductsTable = ({ products }) => {
               <TableCell component="th" scope="row">
                 {product.title}
               </TableCell>
-              <TableCell >{product.brand}</TableCell>
-              <TableCell >{product.category}</TableCell>
+              <TableCell>{product.brand}</TableCell>
+              <TableCell>{product.category}</TableCell>
               <TableCell align="right">{product.price}</TableCell>
             </TableRow>
           ))}
