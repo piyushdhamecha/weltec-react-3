@@ -6,7 +6,9 @@ import "./App.css";
 // import Uncontrolled from "./ComponentType/Uncontrolled";
 // import Controlled from "./ComponentType/Controlled";
 // import VideoRef from "./VideoRef";
-import VideoList from "./VideoList";
+// import VideoList from "./VideoList";
+// import BasicForm from "./Forms/BasicForm";
+import ControlledForm from "./Forms/ControlledForm";
 
 function App() {
   // return <Timer />;
@@ -15,7 +17,9 @@ function App() {
   // return <Uncontrolled />
   // return <Controlled />
   // return <VideoRef />
-  return <VideoList />
+  // return <VideoList />
+  // return <BasicForm />
+  return <ControlledForm />
 }
 
 export default App;
