@@ -8,7 +8,8 @@ import "./App.css";
 // import VideoRef from "./VideoRef";
 // import VideoList from "./VideoList";
 // import BasicForm from "./Forms/BasicForm";
-import ControlledForm from "./Forms/ControlledForm";
+// import ControlledForm from "./Forms/ControlledForm";
+import Todo from "./Todo";
 
 function App() {
   // return <Timer />;
@@ -19,7 +20,8 @@ function App() {
   // return <VideoRef />
   // return <VideoList />
   // return <BasicForm />
-  return <ControlledForm />
+  // return <ControlledForm />
+  return <Todo />
 }
 
 export default App;

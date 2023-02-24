@@ -14,14 +14,17 @@ const ControlledForm = () => {
 
     alert(`Hi, welcome ${firstName}`);
   };
-console.log(firstName)
+
   return (
     <div>
       <h3>Controlled form</h3>
       <form onSubmit={handleFormSubmit}>
         <div>
           <label>First name : </label>
-          <input value={firstName} onChange={(e) => setFirstName(e.target.value.toUpperCase())} />
+          <input
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value.toUpperCase())}
+          />
         </div>
         {hasError && (
           <StyledError>First name should be in upper case only</StyledError>
