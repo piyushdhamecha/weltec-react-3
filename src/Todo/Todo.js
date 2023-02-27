@@ -1,13 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import { IconButton } from "@mui/material";
+import { Button, ButtonGroup, IconButton } from "@mui/material";
+import { StyledButtonWrapper } from "./Todo.styled";
 
 const Todo = () => {
   const inputRef = useRef();
   const [inputValue, setInputValue] = useState("");
   const [todoList, setTodoList] = useState([]);
-  console.log(todoList);
+  const [filterType, setFilterType] = useState("all");
+
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -55,7 +57,29 @@ const Todo = () => {
     setTodoList(newTodoList);
   };
 
-  console.log(todoList);
+  const onFilterClick = (type) => {
+    setFilterType(type);
+  };
+
+  console.log({todoList, filterType});
+
+  // 1st render return: [] memo:[]
+  // 2nd render return: memo
+  // 3rd render return: function() memo:function()
+  // 4th render return: memo
+  const filteredTodoList = useMemo(() => {
+    console.log('Filtered todo list function called')
+    if(filterType === "pending") {
+      return todoList.filter((item) => item.completed === false)
+    }
+
+    if(filterType === "completed") {
+      return todoList.filter((item) => item.completed === true)
+    }
+
+    return todoList
+  }, [todoList, filterType]) 
+
   return (
     <div>
       <h4>Todo list</h4>
@@ -69,10 +93,36 @@ const Todo = () => {
           <button type="submit">Add</button>
         </form>
       </div>
+      <StyledButtonWrapper>
+        <ButtonGroup
+          variant="outlined"
+          aria-label="outlined button group"
+          size="small"
+        >
+          <Button
+            variant={filterType === "all" ? "contained" : "outlined"}
+            onClick={() => onFilterClick("all")}
+          >
+            All
+          </Button>
+          <Button
+            variant={filterType === "pending" ? "contained" : "outlined"}
+            onClick={() => onFilterClick("pending")}
+          >
+            Pending
+          </Button>
+          <Button
+            variant={filterType === "completed" ? "contained" : "outlined"}
+            onClick={() => onFilterClick("completed")}
+          >
+            Completed
+          </Button>
+        </ButtonGroup>
+      </StyledButtonWrapper>
       <ul>
-        {todoList.map((item, index) => {
+        {filteredTodoList.map((item, index) => {
           return (
-            <li key={index}>
+            <li key={`${index}_${item.title}`}>
               <input
                 checked={item.completed}
                 type="checkbox"
