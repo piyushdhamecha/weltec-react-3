@@ -9,7 +9,8 @@ import "./App.css";
 // import VideoList from "./VideoList";
 // import BasicForm from "./Forms/BasicForm";
 // import ControlledForm from "./Forms/ControlledForm";
-import Todo from "./Todo";
+// import Todo from "./Todo";
+import Navigation from "./Navigation";
 
 function App() {
   // return <Timer />;
@@ -21,7 +22,8 @@ function App() {
   // return <VideoList />
   // return <BasicForm />
   // return <ControlledForm />
-  return <Todo />
+  // return <Todo />
+  return <Navigation />
 }
 
 export default App;

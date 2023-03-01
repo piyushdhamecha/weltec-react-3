@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import { Button, ButtonGroup, IconButton } from "@mui/material";
+import { Button, ButtonGroup } from "@mui/material";
 import { StyledButtonWrapper } from "./Todo.styled";
+import TodoList from "./TodoList";
 
 const Todo = () => {
   const inputRef = useRef();
@@ -29,7 +29,7 @@ const Todo = () => {
     inputRef.current.focus();
   };
 
-  const handleItemDeleteClick = (index) => {
+  const handleItemDeleteClick = useCallback((index) => {
     const newTodoList = [
       ...todoList,
       // Buy chairs,
@@ -40,9 +40,9 @@ const Todo = () => {
     newTodoList.splice(index, 1);
 
     setTodoList(newTodoList);
-  };
+  }, [todoList]);
 
-  const handleItemCompleteClick = (index) => {
+  const handleItemCompleteClick = useCallback((index) => {
     const newTodoList = todoList.map((item, todoListIndex) => {
       if (todoListIndex === index) {
         return {
@@ -55,30 +55,32 @@ const Todo = () => {
     });
 
     setTodoList(newTodoList);
-  };
+  }, [todoList]);
 
+  
   const onFilterClick = (type) => {
     setFilterType(type);
   };
 
-  console.log({todoList, filterType});
+  // console.log({todoList, filterType});
 
   // 1st render return: [] memo:[]
   // 2nd render return: memo
   // 3rd render return: function() memo:function()
   // 4th render return: memo
   const filteredTodoList = useMemo(() => {
-    console.log('Filtered todo list function called')
-    if(filterType === "pending") {
-      return todoList.filter((item) => item.completed === false)
+    if (filterType === "pending") {
+      return todoList.filter((item) => item.completed === false);
     }
 
-    if(filterType === "completed") {
-      return todoList.filter((item) => item.completed === true)
+    if (filterType === "completed") {
+      return todoList.filter((item) => item.completed === true);
     }
 
-    return todoList
-  }, [todoList, filterType]) 
+    return todoList;
+  }, [todoList, filterType]);
+
+  console.log(typeof filteredTodoList)
 
   return (
     <div>
@@ -119,26 +121,16 @@ const Todo = () => {
           </Button>
         </ButtonGroup>
       </StyledButtonWrapper>
-      <ul>
-        {filteredTodoList.map((item, index) => {
-          return (
-            <li key={`${index}_${item.title}`}>
-              <input
-                checked={item.completed}
-                type="checkbox"
-                onChange={() => handleItemCompleteClick(index)}
-              />
-              {item.completed ? <del>{item.title}</del> : item.title}
-              <IconButton
-                onClick={() => handleItemDeleteClick(index)}
-                size="small"
-              >
-                <DeleteIcon />
-              </IconButton>
-            </li>
-          );
-        })}
-      </ul>
+      <TodoList
+        filteredTodoList={filteredTodoList}
+        // filteredTodoList={ref10}
+        // filteredTodoList={ref10}
+        handleItemCompleteClick={handleItemCompleteClick}
+        // handleItemCompleteClick={ref1}
+        // handleItemCompleteClick={ref1}
+        // handleItemCompleteClick={ref1}
+        handleItemDeleteClick={handleItemDeleteClick}
+      />
     </div>
   );
 };
