@@ -10,7 +10,8 @@ import "./App.css";
 // import BasicForm from "./Forms/BasicForm";
 // import ControlledForm from "./Forms/ControlledForm";
 // import Todo from "./Todo";
-import Navigation from "./Navigation";
+// import Navigation from "./Navigation";
+import ReactRouter from "./ReactRouter";
 
 function App() {
   // return <Timer />;
@@ -23,7 +24,8 @@ function App() {
   // return <BasicForm />
   // return <ControlledForm />
   // return <Todo />
-  return <Navigation />
+  // return <Navigation />
+  return <ReactRouter />
 }
 
 export default App;
