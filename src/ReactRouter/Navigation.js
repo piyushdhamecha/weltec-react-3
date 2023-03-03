@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 const Navigation = () => {
   const style = ({ isActive }) => ({
     fontWeight: isActive ? 'bold' : 'normal',
+    color: isActive ? 'green' : 'blue'
   });
 
   return (
