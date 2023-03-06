@@ -1,14 +1,31 @@
-import { Link, Outlet, Route, Routes } from "react-router-dom";
+import { Link, Outlet, Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./Home";
 import Layout from "./Layout";
 import Navigation from "./Navigation";
 import NoMatch from "./NoMatch";
 import Users from "./Users";
-import users from './userData'
+import userData from './userData'
 import User from "./User";
+import { useState } from "react";
 
 const ReactRouter = () => {
-  
+  const [users, setUsers] = useState(userData);
+  const navigate = useNavigate()
+
+  const handleRemoveUser = (userId) => {
+    setUsers((state) => state.filter((user) => user.id !== userId));
+
+    navigate('/users')
+    
+    // if(role === 'admin'){
+    //   navigate('/admin-dashboard')
+    // } else if(role === 'teacher'){
+    //   navigate('/teacher-dashboard')
+    // } else if(role === 'student'){
+    //   navigate('/student-dashboard')
+    // }
+  };
+
 
   return (
     <>
@@ -22,8 +39,11 @@ const ReactRouter = () => {
             element={<div>Please select the category from nav menu</div>}
           />
           <Route path="home" element={<Home />} />
+          {/* <Route path="admin-dashboard" element={<AdminDashabord />} />
+          <Route path="teacher-dashboard" element={<TeacherDashboard />} />
+          <Route path="student-dashboard" element={<StudentDashboard />} /> */}
           <Route path="users" element={<Users users={users} />}>
-            <Route path=":id" element={<User />} />
+            <Route path=":userId" element={<User onRemoveUser={handleRemoveUser} />} />
             {/*             
               url: http://localhost:3000/users/1
               userId="test" 

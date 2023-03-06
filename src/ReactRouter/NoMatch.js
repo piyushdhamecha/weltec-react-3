@@ -1,5 +1,5 @@
 const NoMatch = () => {
-  return <p>There's nothing here: 404!</p>;
+  return <p>Route not found</p>;
 };
 
 export default NoMatch;

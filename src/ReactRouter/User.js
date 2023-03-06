@@ -1,18 +1,19 @@
 import { useParams } from "react-router-dom";
 import userData from "./userData";
 
-const User = () => {
-  const { id } = useParams();
-  console.log({ id });
+const User = ({ onRemoveUser }) => {
+  const { userId } = useParams();
 
-  const user = userData.find((user) => user.id === id)
+  const user = userData.find((user) => user.id === userId)
 
-  console.log({user})
   return (
     <>
-      <h2>User: {id}</h2>
+      <h2>User: {userId}</h2>
       <p>{user.fullName}</p>
       {/* <Link to="/users">Back to Users</Link> */}
+      <button type="button" onClick={() => onRemoveUser(userId)}>
+        Remove
+      </button>
     </>
   );
 };
