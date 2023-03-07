@@ -1,85 +1,106 @@
-import { Link, Outlet, Route, Routes, useNavigate } from "react-router-dom";
-import Home from "./Home";
-import Layout from "./Layout";
-import Navigation from "./Navigation";
-import NoMatch from "./NoMatch";
-import Users from "./Users";
-import userData from './userData'
-import User from "./User";
 import { useState } from "react";
+import { Routes, Route, Link, Navigate, Outlet } from "react-router-dom";
 
-const ReactRouter = () => {
-  const [users, setUsers] = useState(userData);
-  const navigate = useNavigate()
+const App = () => {
+  const [user, setUser] = useState(null);
 
-  const handleRemoveUser = (userId) => {
-    setUsers((state) => state.filter((user) => user.id !== userId));
-
-    navigate('/users')
-    
-    // if(role === 'admin'){
-    //   navigate('/admin-dashboard')
-    // } else if(role === 'teacher'){
-    //   navigate('/teacher-dashboard')
-    // } else if(role === 'student'){
-    //   navigate('/student-dashboard')
-    // }
-  };
-
+  const handleLogin = () =>
+    setUser({
+      id: "1",
+      name: "robin",
+      permissions: ["analyze"],
+      role: ["admin"],
+    });
+  const handleLogout = () => setUser(null);
 
   return (
     <>
-      <h1>React Router</h1>
+      <h1>
+        React Router
+        {user ? (
+          <button onClick={handleLogout}>Sign Out</button>
+        ) : (
+          <button onClick={handleLogin}>Sign In</button>
+        )}
+      </h1>
+
       <Navigation />
 
       <Routes>
-        <Route element={<Layout />}>
-          <Route
-            index
-            element={<div>Please select the category from nav menu</div>}
-          />
+        <Route index element={<Landing />} />
+        <Route path="landing" element={<Landing />} />
+        <Route element={<ProtectedRoute isAllowed={user} />}>
           <Route path="home" element={<Home />} />
-          {/* <Route path="admin-dashboard" element={<AdminDashabord />} />
-          <Route path="teacher-dashboard" element={<TeacherDashboard />} />
-          <Route path="student-dashboard" element={<StudentDashboard />} /> */}
-          <Route path="users" element={<Users users={users} />}>
-            <Route path=":userId" element={<User onRemoveUser={handleRemoveUser} />} />
-            {/*             
-              url: http://localhost:3000/users/1
-              userId="test" 
-            */}
-
-            {/* <Route
-              path="profile"
-              element={
-                <div>
-                  User profile
-                  <div>
-                    <Link to={`/users/profile/about`}>About</Link>
-                    <Outlet />
-                  </div>
-                </div>
-              }
-            >
-              <Route path="about" element={<div>User about detail</div>} />
-            </Route> */}
-          </Route>
-          <Route path="*" element={<NoMatch />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route
+            path="analytics"
+            element={
+              <ProtectedRoute
+                redirectPath="/home"
+                isAllowed={!!user && user.permissions.includes("analyze")}
+              >
+                <Analytics />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="admin" element={<Admin />} />
         </Route>
+        <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Routes>
-
-      {/*       
-      /home => <Home />
-      /user => <Users />
-
-      <h1>React Router</h1>
-      <Navigation />
-        <Layout>
-          <Home />
-        </Layout>
-      */}
     </>
   );
 };
 
-export default ReactRouter;
+export default App;
+
+const Navigation = () => (
+  <nav
+    style={{
+      borderBottom: "solid 1px",
+      paddingBottom: "1rem",
+      display: "flex",
+      gap: "10px",
+    }}
+  >
+    <Link to="/landing">Landing</Link>
+    <Link to="/home">Home</Link>
+    <Link to="/dashboard">Dashboard</Link>
+    <Link to="/analytics">Analytics</Link>
+    <Link to="/admin">Admin</Link>
+  </nav>
+);
+
+const Landing = () => {
+  return <h2>Landing (Public: anyone can access this page)</h2>;
+};
+
+const Home = () => {
+  return <h2>Home (Protected: authenticated user required)</h2>;
+};
+
+const Dashboard = () => {
+  return <h2>Dashboard (Protected: authenticated user required)</h2>;
+};
+
+const Analytics = () => {
+  return (
+    <h2>
+      Analytics (Protected: authenticated user with permission 'analyze'
+      required)
+    </h2>
+  );
+};
+
+const Admin = () => {
+  return (
+    <h2>Admin (Protected: authenticated user with role 'admin' required)</h2>
+  );
+};
+
+const ProtectedRoute = ({ isAllowed, children, redirectPath = "/landing" }) => {
+  if (!isAllowed) {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return children ? children : <Outlet />;
+};
