@@ -11,7 +11,8 @@ import "./App.css";
 // import ControlledForm from "./Forms/ControlledForm";
 // import Todo from "./Todo";
 // import Navigation from "./Navigation";
-import ReactRouter from "./ReactRouter";
+// import ReactRouter from "./ReactRouter";
+import TodoReducer from './TodoReducer'
 
 function App() {
   // return <Timer />;
@@ -25,7 +26,8 @@ function App() {
   // return <ControlledForm />
   // return <Todo />
   // return <Navigation />
-  return <ReactRouter />
+  // return <ReactRouter />
+  return <TodoReducer />
 }
 
 export default App;

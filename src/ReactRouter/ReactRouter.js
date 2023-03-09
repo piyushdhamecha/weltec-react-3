@@ -37,13 +37,23 @@ const App = () => {
             element={
               <ProtectedRoute
                 redirectPath="/home"
-                isAllowed={!!user && user.permissions.includes("analyze")}
+                isAllowed={!!user && user?.permissions?.includes("analyze")}
               >
                 <Analytics />
               </ProtectedRoute>
             }
           />
-          <Route path="admin" element={<Admin />} />
+          <Route
+            path="admin"
+            element={
+              <ProtectedRoute
+                redirectPath="/home"
+                isAllowed={!!user && user?.role?.includes("admin")}
+              >
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
         </Route>
         <Route path="*" element={<p>There's nothing here: 404!</p>} />
       </Routes>
