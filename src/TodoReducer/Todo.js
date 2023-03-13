@@ -10,28 +10,7 @@ import {
 import { Button, ButtonGroup } from "@mui/material";
 import { StyledButtonWrapper } from "./Todo.styled";
 import TodoList from "./TodoList";
-
-const reducer = (state, action) => {
-  debugger;
-  switch (action.type) {
-    case "ADD":
-      return state.concat([action.data]);
-
-    case "DELETE":
-      const newTodoList = [
-        ...state,
-        // Buy chairs,
-        // Buy glasses,˝
-        // Pay credit cards
-      ];
-
-      newTodoList.splice(action.data.index, 1);
-
-      return newTodoList
-    default:
-      break;
-  }
-};
+import reducer from "./reducer";
 
 const Todo = () => {
   const inputRef = useRef();
@@ -39,7 +18,7 @@ const Todo = () => {
   // const [todoList, setTodoList] = useState([]);
   const [todoList, dispatch] = useReducer(reducer, []);
   const [filterType, setFilterType] = useState("all");
-  debugger;
+  
   useEffect(() => {
     inputRef.current.focus();
   }, []);
@@ -83,25 +62,29 @@ const Todo = () => {
         data: { index },
       });
     },
-    [todoList]
+    []
   );
 
   const handleItemCompleteClick = useCallback(
     (index) => {
-      const newTodoList = todoList.map((item, todoListIndex) => {
-        if (todoListIndex === index) {
-          return {
-            title: item.title,
-            completed: !item.completed,
-          };
-        }
+      // const newTodoList = todoList.map((item, todoListIndex) => {
+      //   if (todoListIndex === index) {
+      //     return {
+      //       title: item.title,
+      //       completed: !item.completed,
+      //     };
+      //   }
 
-        return item;
-      });
+      //   return item;
+      // });
 
       // setTodoList(newTodoList);
+      dispatch({
+        type: "TOGGLE_COMPLETED",
+        data: { index }
+      })
     },
-    [todoList]
+    []
   );
 
   const onFilterClick = (type) => {
@@ -126,7 +109,7 @@ const Todo = () => {
     return todoList;
   }, [todoList, filterType]);
 
-  console.log(typeof filteredTodoList);
+  console.log(todoList)
 
   return (
     <div>

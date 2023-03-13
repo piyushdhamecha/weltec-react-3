@@ -12,7 +12,9 @@ import "./App.css";
 // import Todo from "./Todo";
 // import Navigation from "./Navigation";
 // import ReactRouter from "./ReactRouter";
-import TodoReducer from './TodoReducer'
+// import TodoReducer from './TodoReducer'
+// import IncrementDecrement from "./IncrementDecrement";
+import ReduxExample from "./ReduxExample";
 
 function App() {
   // return <Timer />;
@@ -27,7 +29,9 @@ function App() {
   // return <Todo />
   // return <Navigation />
   // return <ReactRouter />
-  return <TodoReducer />
+  // return <TodoReducer />
+  // return <IncrementDecrement />
+  return <ReduxExample />
 }
 
 export default App;
