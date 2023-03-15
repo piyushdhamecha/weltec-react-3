@@ -3,10 +3,7 @@ import { useState } from "react";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import SamsungS23Ultra from "./SamsungS23Ultra";
 
-const SamsungMobiles = ({
-  badgeCount,
-  setBadgeCount,
-}) => {
+const SamsungMobiles = () => {
   const [showMobileDetail, setShowMobileDetail] = useState(false);
 
   return (
@@ -26,7 +23,7 @@ const SamsungMobiles = ({
           />
         </ListItem>
       </List>
-      {showMobileDetail && <SamsungS23Ultra badgeCount={badgeCount} setBadgeCount={setBadgeCount} />}
+      {showMobileDetail && <SamsungS23Ultra />}
     </div>
   );
 };

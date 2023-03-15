@@ -2,10 +2,7 @@ import { List, ListItem, ListItemText } from "@mui/material";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 import SamsungMobiles from "./SamsungMobiles";
 
-const Mobiles = ({
-  badgeCount,
-  setBadgeCount
-}) => {
+const Mobiles = () => {
   return (
     <div>
       <h2>Mobiles</h2>
@@ -22,7 +19,7 @@ const Mobiles = ({
       </List>
       {/* <Outlet /> */}
       <Routes>
-        <Route path="samsung" element={<SamsungMobiles badgeCount={badgeCount} setBadgeCount={setBadgeCount} />} />
+        <Route path="samsung" element={<SamsungMobiles />} />
       </Routes>
     </div>
   );

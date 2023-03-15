@@ -8,8 +8,12 @@ import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Outlet } from "react-router-dom";
 
-export default function PrimarySearchAppBar({ badgeCount }) {
-  console.log({ badgeCount })
+import store from '../store'
+
+export default function PrimarySearchAppBar() {
+  const badgeCount = store.getState()
+
+  console.log(badgeCount)
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }}>
@@ -19,12 +23,11 @@ export default function PrimarySearchAppBar({ badgeCount }) {
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: { xs: "none", sm: "block" } }}
             >
               Redux task
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box >
               <IconButton
                 size="large"
                 aria-label="show 17 new notifications"
