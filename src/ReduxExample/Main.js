@@ -8,26 +8,25 @@ import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Outlet } from "react-router-dom";
 
-import store from '../store'
+// import {connect} from 'react-redux'
+import { useSelector } from "react-redux";
 
-export default function PrimarySearchAppBar() {
-  const badgeCount = store.getState()
+const Main = () => {
+  // mapStateToProps alternative hook
+  const badgeCount = useSelector((state) => {
+    return state.badgeCount
+  })
 
-  console.log(badgeCount)
   return (
     <React.Fragment>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-            >
+            <Typography variant="h6" noWrap component="div">
               Redux task
             </Typography>
             <Box sx={{ flexGrow: 1 }} />
-            <Box >
+            <Box>
               <IconButton
                 size="large"
                 aria-label="show 17 new notifications"
@@ -44,4 +43,12 @@ export default function PrimarySearchAppBar() {
       <Outlet />
     </React.Fragment>
   );
-}
+};
+
+export default Main 
+
+// const mapStateToProps = (state) => {
+//   return { badgeCount: state }
+// }
+
+// export default connect(mapStateToProps)(Main)

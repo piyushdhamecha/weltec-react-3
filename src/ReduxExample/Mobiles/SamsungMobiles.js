@@ -1,6 +1,5 @@
 import { Button, List, ListItem, ListItemText } from "@mui/material";
 import { useState } from "react";
-import { Link, Outlet, Route, Routes } from "react-router-dom";
 import SamsungS23Ultra from "./SamsungS23Ultra";
 
 const SamsungMobiles = () => {
