@@ -9,12 +9,12 @@ import "./App.css";
 // import VideoList from "./VideoList";
 // import BasicForm from "./Forms/BasicForm";
 // import ControlledForm from "./Forms/ControlledForm";
-// import Todo from "./Todo";
+import Todo from "./Todo";
 // import Navigation from "./Navigation";
 // import ReactRouter from "./ReactRouter";
 // import TodoReducer from './TodoReducer'
 // import IncrementDecrement from "./IncrementDecrement";
-import ReduxExample from "./ReduxExample";
+// import ReduxExample from "./ReduxExample";
 
 function App() {
   // return <Timer />;
@@ -26,12 +26,12 @@ function App() {
   // return <VideoList />
   // return <BasicForm />
   // return <ControlledForm />
-  // return <Todo />
+  return <Todo />
   // return <Navigation />
   // return <ReactRouter />
   // return <TodoReducer />
   // return <IncrementDecrement />
-  return <ReduxExample />
+  // return <ReduxExample />
 }
 
 export default App;

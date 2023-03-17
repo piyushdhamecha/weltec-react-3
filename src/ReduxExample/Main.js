@@ -52,3 +52,11 @@ export default Main
 // }
 
 // export default connect(mapStateToProps)(Main)
+
+
+// const connect = (mapStateToProps, mapDispatchToProps) => (Component) => {
+//   const reduxStateProps = mapStateToProps(state)
+//   const reduxDispatchProps = mapDispatchToProps(dispatch)
+
+//   return <Component {...reduxStateProps} {...reduxDispatchProps} />
+// }

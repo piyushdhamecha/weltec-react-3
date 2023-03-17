@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 
 import { useDispatch } from 'react-redux'
 
-const SamsungS23Ultra = ({ addToCart }) => {
+const SamsungS23Ultra = () => {
   // store.dispatch
   const dispatch = useDispatch()
 
